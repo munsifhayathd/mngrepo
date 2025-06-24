@@ -8,7 +8,7 @@ import { CertificationFormProps, CertificationData } from "@/types/mobilisation"
 
 export function CertificationForm({ onSubmit, onCancel }: CertificationFormProps) {
   const [formData, setFormData] = useState<Omit<CertificationData, 'id' | 'status'>>({
-    personnelName: "",
+    surveyorName: "",
     certificationType: "",
     project: "",
     issueDate: "",
@@ -35,21 +35,21 @@ export function CertificationForm({ onSubmit, onCancel }: CertificationFormProps
     <form onSubmit={handleSubmit} className="space-y-4">
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div className="space-y-2">
-          <Label htmlFor="personnelName">Personnel Name</Label>
+          <Label htmlFor="surveyorName">Surveyor Name</Label>
           <select
-            id="personnelName"
-            name="personnelName"
-            value={formData.personnelName}
+            id="surveyorName"
+            name="surveyorName"
+            value={formData.surveyorName}
             onChange={handleChange}
             className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
             required
           >
-            <option value="">Select personnel</option>
-            <option value="John Smith">John Smith</option>
-            <option value="Sarah Johnson">Sarah Johnson</option>
-            <option value="Michael Brown">Michael Brown</option>
-            <option value="Emma Taylor">Emma Taylor</option>
-            <option value="James Anderson">James Anderson</option>
+            <option value="">Select surveyor</option>
+            <option value="Sarah Mitchell">Sarah Mitchell</option>
+            <option value="John Stevens">John Stevens</option>
+            <option value="Michael Thompson">Michael Thompson</option>
+            <option value="Emma Robinson">Emma Robinson</option>
+            <option value="David Wilson">David Wilson</option>
           </select>
         </div>
         
@@ -64,19 +64,19 @@ export function CertificationForm({ onSubmit, onCancel }: CertificationFormProps
             required
           >
             <option value="">Select certification</option>
-            <option value="Mine Safety">Mine Safety Training</option>
-            <option value="Heavy Equipment">Heavy Equipment Operation</option>
+            <option value="Licensed Surveyor">Licensed Surveyor</option>
+            <option value="UAV Pilot License">UAV Pilot License</option>
+            <option value="Laser Scanning">Laser Scanning Certification</option>
+            <option value="Hydrographic Surveying">Hydrographic Surveying</option>
+            <option value="Engineering Surveying">Engineering Surveying</option>
+            <option value="GIS Professional">GIS Professional</option>
+            <option value="Safety Training">Safety Training</option>
             <option value="First Aid">First Aid & CPR</option>
-            <option value="Confined Space">Confined Space Entry</option>
-            <option value="Working at Height">Working at Height</option>
-            <option value="Hazmat">Hazardous Materials Handling</option>
-            <option value="Blasting">Blasting & Explosives</option>
-            <option value="Respiratory">Respiratory Protection</option>
           </select>
         </div>
         
         <div className="space-y-2">
-          <Label htmlFor="project">Mining Operation</Label>
+          <Label htmlFor="project">Surveying Project</Label>
           <select
             id="project"
             name="project"
@@ -85,13 +85,13 @@ export function CertificationForm({ onSubmit, onCancel }: CertificationFormProps
             className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
             required
           >
-            <option value="">Select mining operation</option>
-            <option value="Iron Ore Western Australia">Iron Ore Western Australia</option>
-            <option value="Oyu Tolgoi Mongolia">Oyu Tolgoi Mongolia</option>
-            <option value="Kennecott Utah">Kennecott Utah</option>
-            <option value="Diavik Diamond Mine">Diavik Diamond Mine</option>
-            <option value="Simandou Guinea">Simandou Guinea</option>
-            <option value="Rincon Lithium">Rincon Lithium</option>
+            <option value="">Select project</option>
+            <option value="Perth Infrastructure Development">Perth Infrastructure Development</option>
+            <option value="Pilbara Resource Survey">Pilbara Resource Survey</option>
+            <option value="Brisbane Land Development">Brisbane Land Development</option>
+            <option value="Melbourne Utility Mapping">Melbourne Utility Mapping</option>
+            <option value="Sydney Coastal Survey">Sydney Coastal Survey</option>
+            <option value="Darwin Port Expansion">Darwin Port Expansion</option>
           </select>
         </div>
         

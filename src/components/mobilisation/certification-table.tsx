@@ -8,93 +8,93 @@ import { useState } from "react";
 const mockCertifications = [
   {
     id: "1",
-    personnelName: "John Smith",
-    certificationType: "BOSIET",
+    surveyorName: "Sarah Mitchell",
+    certificationType: "Licensed Surveyor",
     issueDate: "2024-01-15",
     expiryDate: "2027-01-15",
     status: "Valid",
-    project: "Iron Ore Western Australia",
+    project: "Perth Infrastructure Development",
   },
   {
     id: "2",
-    personnelName: "Sarah Johnson",
-    certificationType: "Helicopter Safety",
+    surveyorName: "John Stevens",
+    certificationType: "UAV Pilot License",
     issueDate: "2023-06-20",
     expiryDate: "2025-06-20",
     status: "Expiring Soon",
-    project: "Weipa Bauxite",
+    project: "Pilbara Resource Survey",
   },
   {
     id: "3",
-    personnelName: "Michael Brown",
+    surveyorName: "Michael Thompson",
     certificationType: "First Aid",
     issueDate: "2024-03-10",
     expiryDate: "2026-03-10",
     status: "Valid",
-    project: "Iron Ore Western Australia",
+    project: "Brisbane Land Development",
   },
   {
     id: "4",
-    personnelName: "Emma Taylor",
-    certificationType: "BOSIET",
+    surveyorName: "Emma Robinson",
+    certificationType: "Laser Scanning",
     issueDate: "2022-11-05",
     expiryDate: "2025-11-05",
     status: "Expiring Soon",
-    project: "Yarwun Alumina Refinery",
+    project: "Melbourne Utility Mapping",
   },
   {
     id: "5",
-    personnelName: "James Anderson",
-    certificationType: "Confined Space",
+    surveyorName: "David Wilson",
+    certificationType: "Hydrographic Surveying",
     issueDate: "2023-12-01",
     expiryDate: "2024-12-01",
     status: "Expired",
-    project: "Dampier Salt",
+    project: "Sydney Coastal Survey",
   },
   {
     id: "6",
-    personnelName: "David Wilson",
-    certificationType: "Working at Height",
+    surveyorName: "Lisa Chen",
+    certificationType: "Engineering Surveying",
     issueDate: "2024-05-10",
     expiryDate: "2027-05-10",
     status: "Valid",
-    project: "Bell Bay Aluminium",
+    project: "Darwin Port Expansion",
   },
   {
     id: "7",
-    personnelName: "Lisa Chen",
-    certificationType: "Fire Safety",
+    surveyorName: "Robert Garcia",
+    certificationType: "GIS Professional",
     issueDate: "2023-08-15",
     expiryDate: "2025-08-15",
     status: "Expiring Soon",
-    project: "Iron Ore Western Australia",
+    project: "Perth Infrastructure Development",
   },
   {
     id: "8",
-    personnelName: "Robert Garcia",
-    certificationType: "BOSIET",
+    surveyorName: "Maria Rodriguez",
+    certificationType: "Licensed Surveyor",
     issueDate: "2024-02-20",
     expiryDate: "2027-02-20",
     status: "Valid",
-    project: "Gove Bauxite",
+    project: "Pilbara Resource Survey",
   },
   {
     id: "9",
-    personnelName: "Maria Rodriguez",
-    certificationType: "First Aid",
+    surveyorName: "Kevin Lee",
+    certificationType: "Safety Training",
     issueDate: "2022-10-05",
     expiryDate: "2024-10-05",
     status: "Expired",
-    project: "Boyne Smelters Limited",
+    project: "Brisbane Land Development",
   },
   {
     id: "10",
-    personnelName: "Kevin Lee",
-    certificationType: "Helicopter Safety",
+    surveyorName: "Anna Johnson",
+    certificationType: "UAV Pilot License",
     issueDate: "2024-04-12",
     expiryDate: "2026-04-12",
     status: "Valid",
-    project: "Simandou Project",
+    project: "Melbourne Utility Mapping",
   },
 ];
 
@@ -144,7 +144,7 @@ export function CertificationTable({ statusFilter = "All", projectFilter = "All"
           <thead className="bg-gray-50 dark:bg-gray-800">
             <tr>
               <th scope="col" className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400">
-                Personnel
+                Surveyor
               </th>
               <th scope="col" className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400">
                 Certification
@@ -175,7 +175,7 @@ export function CertificationTable({ statusFilter = "All", projectFilter = "All"
               return (
                 <tr key={cert.id} className="hover:bg-gray-50 dark:hover:bg-gray-800">
                   <td className="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900 dark:text-white">
-                    {cert.personnelName}
+                    {cert.surveyorName}
                   </td>
                   <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-500 dark:text-gray-400">
                     {cert.certificationType}
@@ -201,12 +201,22 @@ export function CertificationTable({ statusFilter = "All", projectFilter = "All"
                     </Badge>
                   </td>
                   <td className="whitespace-nowrap px-6 py-4 text-right text-sm font-medium">
-                    <Button variant="ghost" size="sm" className="text-primary hover:text-primary/80">
-                      View
-                    </Button>
-                    <Button variant="ghost" size="sm" className="text-primary hover:text-primary/80">
-                      Renew
-                    </Button>
+                    <div className="flex justify-end space-x-2">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="h-8 px-3 text-xs"
+                      >
+                        View
+                      </Button>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="h-8 px-3 text-xs"
+                      >
+                        Renew
+                      </Button>
+                    </div>
                   </td>
                 </tr>
               );
@@ -214,6 +224,12 @@ export function CertificationTable({ statusFilter = "All", projectFilter = "All"
           </tbody>
         </table>
       </div>
+      
+      {filteredCertifications.length === 0 && (
+        <div className="p-8 text-center">
+          <p className="text-gray-500 dark:text-gray-400">No certifications found matching the current filters.</p>
+        </div>
+      )}
     </div>
   );
 }

@@ -8,14 +8,14 @@ import { TravelBookingFormProps, TravelBookingData } from "@/types/mobilisation"
 
 export function TravelBookingForm({ onSubmit, onCancel }: TravelBookingFormProps) {
   const [formData, setFormData] = useState<Omit<TravelBookingData, 'id' | 'status' | 'estimatedCost'>>({
-    personnelName: "",
+    equipmentType: "",
     project: "",
     origin: "",
     destination: "",
-    departureDate: "",
+    deploymentDate: "",
     returnDate: "",
-    flightClass: "",
-    accommodationType: "",
+    transportMethod: "",
+    operator: "",
     specialRequirements: "",
   });
 
@@ -38,26 +38,28 @@ export function TravelBookingForm({ onSubmit, onCancel }: TravelBookingFormProps
     <form onSubmit={handleSubmit} className="space-y-4">
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div className="space-y-2">
-          <Label htmlFor="personnelName">Personnel Name</Label>
+          <Label htmlFor="equipmentType">Equipment Type</Label>
           <select
-            id="personnelName"
-            name="personnelName"
-            value={formData.personnelName}
+            id="equipmentType"
+            name="equipmentType"
+            value={formData.equipmentType}
             onChange={handleChange}
             className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
             required
           >
-            <option value="">Select personnel</option>
-            <option value="John Smith">John Smith</option>
-            <option value="Sarah Johnson">Sarah Johnson</option>
-            <option value="Michael Brown">Michael Brown</option>
-            <option value="Emma Taylor">Emma Taylor</option>
-            <option value="David Wilson">David Wilson</option>
+            <option value="">Select equipment</option>
+            <option value="Total Station">Total Station</option>
+            <option value="GPS/GNSS Receiver">GPS/GNSS Receiver</option>
+            <option value="Laser Scanner">Laser Scanner</option>
+            <option value="UAV/Drone">UAV/Drone</option>
+            <option value="Survey Vehicle">Survey Vehicle</option>
+            <option value="Hydrographic Equipment">Hydrographic Equipment</option>
+            <option value="Data Collector">Data Collector</option>
           </select>
         </div>
         
         <div className="space-y-2">
-          <Label htmlFor="project">Mining Operation</Label>
+          <Label htmlFor="project">Project</Label>
           <select
             id="project"
             name="project"
@@ -66,36 +68,26 @@ export function TravelBookingForm({ onSubmit, onCancel }: TravelBookingFormProps
             className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
             required
           >
-            <option value="">Select mining operation</option>
-            <option value="Iron Ore Western Australia">Iron Ore Western Australia</option>
-            <option value="Oyu Tolgoi Mongolia">Oyu Tolgoi Mongolia</option>
-            <option value="Kennecott Utah">Kennecott Utah</option>
-            <option value="Diavik Diamond Mine">Diavik Diamond Mine</option>
-            <option value="Simandou Guinea">Simandou Guinea</option>
-            <option value="Rincon Lithium">Rincon Lithium</option>
+            <option value="">Select project</option>
+            <option value="Perth Infrastructure Development">Perth Infrastructure Development</option>
+            <option value="Pilbara Resource Survey">Pilbara Resource Survey</option>
+            <option value="Brisbane Land Development">Brisbane Land Development</option>
+            <option value="Melbourne Utility Mapping">Melbourne Utility Mapping</option>
+            <option value="Sydney Coastal Survey">Sydney Coastal Survey</option>
+            <option value="Darwin Port Expansion">Darwin Port Expansion</option>
           </select>
         </div>
         
         <div className="space-y-2">
-          <Label htmlFor="origin">Origin City</Label>
-          <select
+          <Label htmlFor="origin">Origin</Label>
+          <Input
             id="origin"
             name="origin"
             value={formData.origin}
             onChange={handleChange}
-            className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+            placeholder="Equipment origin location"
             required
-          >
-            <option value="">Select origin city</option>
-            <option value="Perth">Perth, Australia</option>
-            <option value="Brisbane">Brisbane, Australia</option>
-            <option value="Sydney">Sydney, Australia</option>
-            <option value="Melbourne">Melbourne, Australia</option>
-            <option value="Adelaide">Adelaide, Australia</option>
-            <option value="Darwin">Darwin, Australia</option>
-            <option value="Vancouver">Vancouver, Canada</option>
-            <option value="Salt Lake City">Salt Lake City, USA</option>
-          </select>
+          />
         </div>
         
         <div className="space-y-2">
@@ -109,22 +101,22 @@ export function TravelBookingForm({ onSubmit, onCancel }: TravelBookingFormProps
             required
           >
             <option value="">Select destination</option>
-            <option value="Pilbara">Pilbara, Western Australia</option>
-            <option value="Ulaanbaatar">Ulaanbaatar, Mongolia</option>
-            <option value="Salt Lake City">Salt Lake City, Utah</option>
-            <option value="Yellowknife">Yellowknife, Canada</option>
-            <option value="Conakry">Conakry, Guinea</option>
-            <option value="Salta">Salta, Argentina</option>
+            <option value="Perth, WA">Perth, Western Australia</option>
+            <option value="Brisbane, QLD">Brisbane, Queensland</option>
+            <option value="Melbourne, VIC">Melbourne, Victoria</option>
+            <option value="Sydney, NSW">Sydney, New South Wales</option>
+            <option value="Darwin, NT">Darwin, Northern Territory</option>
+            <option value="Karratha, WA">Karratha, Western Australia</option>
           </select>
         </div>
         
         <div className="space-y-2">
-          <Label htmlFor="departureDate">Departure Date</Label>
+          <Label htmlFor="deploymentDate">Deployment Date</Label>
           <Input
-            id="departureDate"
-            name="departureDate"
+            id="deploymentDate"
+            name="deploymentDate"
             type="date"
-            value={formData.departureDate}
+            value={formData.deploymentDate}
             onChange={handleChange}
             required
           />
@@ -143,37 +135,37 @@ export function TravelBookingForm({ onSubmit, onCancel }: TravelBookingFormProps
         </div>
         
         <div className="space-y-2">
-          <Label htmlFor="flightClass">Flight Class</Label>
+          <Label htmlFor="transportMethod">Transport Method</Label>
           <select
-            id="flightClass"
-            name="flightClass"
-            value={formData.flightClass}
+            id="transportMethod"
+            name="transportMethod"
+            value={formData.transportMethod}
             onChange={handleChange}
             className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
           >
-            <option value="">Select flight class</option>
-            <option value="Economy">Economy</option>
-            <option value="Premium Economy">Premium Economy</option>
-            <option value="Business">Business</option>
-            <option value="First">First Class</option>
+            <option value="">Select transport method</option>
+            <option value="Road Transport">Road Transport</option>
+            <option value="Air Freight">Air Freight</option>
+            <option value="Express Courier">Express Courier</option>
+            <option value="Specialized Transport">Specialized Transport</option>
           </select>
         </div>
         
         <div className="space-y-2">
-          <Label htmlFor="accommodationType">Accommodation Type</Label>
+          <Label htmlFor="operator">Operator</Label>
           <select
-            id="accommodationType"
-            name="accommodationType"
-            value={formData.accommodationType}
+            id="operator"
+            name="operator"
+            value={formData.operator}
             onChange={handleChange}
             className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
           >
-            <option value="">Select accommodation</option>
-            <option value="Hotel - Standard">Hotel - Standard</option>
-            <option value="Hotel - Premium">Hotel - Premium</option>
-            <option value="Serviced Apartment">Serviced Apartment</option>
-            <option value="Mining Camp">Mining Camp</option>
-            <option value="Company Lodge">Company Lodge</option>
+            <option value="">Select operator</option>
+            <option value="Sarah Mitchell">Sarah Mitchell</option>
+            <option value="John Stevens">John Stevens</option>
+            <option value="Michael Thompson">Michael Thompson</option>
+            <option value="Emma Robinson">Emma Robinson</option>
+            <option value="David Wilson">David Wilson</option>
           </select>
         </div>
       </div>
@@ -183,11 +175,11 @@ export function TravelBookingForm({ onSubmit, onCancel }: TravelBookingFormProps
         <textarea
           id="specialRequirements"
           name="specialRequirements"
-          value={formData.specialRequirements || ""}
+          value={formData.specialRequirements}
           onChange={handleChange}
-          placeholder="Any special dietary, accessibility, or other requirements..."
-          className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
           rows={3}
+          className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+          placeholder="Enter any special handling or transport requirements..."
         />
       </div>
       
@@ -196,7 +188,7 @@ export function TravelBookingForm({ onSubmit, onCancel }: TravelBookingFormProps
           Cancel
         </Button>
         <Button type="submit">
-          Request Booking
+          Schedule Equipment Deployment
         </Button>
       </div>
     </form>

@@ -8,13 +8,14 @@ import { PersonnelAllocationFormProps, PersonnelAllocationData } from "@/types/m
 
 export function PersonnelAllocationForm({ onSubmit, onCancel }: PersonnelAllocationFormProps) {
   const [formData, setFormData] = useState<Omit<PersonnelAllocationData, 'id' | 'status'>>({
-    personnelName: "",
+    surveyorName: "",
     role: "",
     project: "",
     startDate: "",
     endDate: "",
     location: "",
-    reportingManager: "",
+    projectManager: "",
+    surveyType: "",
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -35,13 +36,13 @@ export function PersonnelAllocationForm({ onSubmit, onCancel }: PersonnelAllocat
     <form onSubmit={handleSubmit} className="space-y-4">
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div className="space-y-2">
-          <Label htmlFor="personnelName">Personnel Name</Label>
+          <Label htmlFor="surveyorName">Surveyor Name</Label>
           <Input
-            id="personnelName"
-            name="personnelName"
-            value={formData.personnelName}
+            id="surveyorName"
+            name="surveyorName"
+            value={formData.surveyorName}
             onChange={handleChange}
-            placeholder="Enter personnel name"
+            placeholder="Enter surveyor name"
             required
           />
         </div>
@@ -57,19 +58,19 @@ export function PersonnelAllocationForm({ onSubmit, onCancel }: PersonnelAllocat
             required
           >
             <option value="">Select a role</option>
-            <option value="Mine Manager">Mine Manager</option>
-            <option value="Mining Engineer">Mining Engineer</option>
-            <option value="Safety Officer">Safety Officer</option>
-            <option value="Equipment Operator">Equipment Operator</option>
-            <option value="Geologist">Geologist</option>
-            <option value="Metallurgist">Metallurgist</option>
-            <option value="Environmental Engineer">Environmental Engineer</option>
-            <option value="Maintenance Technician">Maintenance Technician</option>
+            <option value="Senior Land Surveyor">Senior Land Surveyor</option>
+            <option value="Survey Technician">Survey Technician</option>
+            <option value="GIS Specialist">GIS Specialist</option>
+            <option value="Laser Scanning Operator">Laser Scanning Operator</option>
+            <option value="UAV Pilot">UAV Pilot</option>
+            <option value="Hydrographic Surveyor">Hydrographic Surveyor</option>
+            <option value="Engineering Surveyor">Engineering Surveyor</option>
+            <option value="Survey Project Manager">Survey Project Manager</option>
           </select>
         </div>
         
         <div className="space-y-2">
-          <Label htmlFor="project">Mining Operation</Label>
+          <Label htmlFor="project">Surveying Project</Label>
           <select
             id="project"
             name="project"
@@ -78,13 +79,33 @@ export function PersonnelAllocationForm({ onSubmit, onCancel }: PersonnelAllocat
             className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
             required
           >
-            <option value="">Select mining operation</option>
-            <option value="Iron Ore Western Australia">Iron Ore Western Australia</option>
-            <option value="Oyu Tolgoi Mongolia">Oyu Tolgoi Mongolia</option>
-            <option value="Kennecott Utah">Kennecott Utah</option>
-            <option value="Diavik Diamond Mine">Diavik Diamond Mine</option>
-            <option value="Simandou Guinea">Simandou Guinea</option>
-            <option value="Rincon Lithium">Rincon Lithium</option>
+            <option value="">Select project</option>
+            <option value="Perth Infrastructure Development">Perth Infrastructure Development</option>
+            <option value="Pilbara Resource Survey">Pilbara Resource Survey</option>
+            <option value="Brisbane Land Development">Brisbane Land Development</option>
+            <option value="Melbourne Utility Mapping">Melbourne Utility Mapping</option>
+            <option value="Sydney Coastal Survey">Sydney Coastal Survey</option>
+            <option value="Darwin Port Expansion">Darwin Port Expansion</option>
+          </select>
+        </div>
+
+        <div className="space-y-2">
+          <Label htmlFor="surveyType">Survey Type</Label>
+          <select
+            id="surveyType"
+            name="surveyType"
+            value={formData.surveyType}
+            onChange={handleChange}
+            className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+            required
+          >
+            <option value="">Select survey type</option>
+            <option value="Land & Property Survey">Land & Property Survey</option>
+            <option value="Laser Scanning (LiDAR)">Laser Scanning (LiDAR)</option>
+            <option value="Aerial Surveying">Aerial Surveying</option>
+            <option value="Utility Locating">Utility Locating</option>
+            <option value="Engineering Survey">Engineering Survey</option>
+            <option value="Hydrographic Survey">Hydrographic Survey</option>
           </select>
         </div>
         
@@ -99,23 +120,23 @@ export function PersonnelAllocationForm({ onSubmit, onCancel }: PersonnelAllocat
             required
           >
             <option value="">Select location</option>
-            <option value="Pilbara, WA">Pilbara, Western Australia</option>
-            <option value="Ulaanbaatar, Mongolia">Ulaanbaatar, Mongolia</option>
-            <option value="Salt Lake City, Utah">Salt Lake City, Utah</option>
-            <option value="Yellowknife, Canada">Yellowknife, Canada</option>
-            <option value="Conakry, Guinea">Conakry, Guinea</option>
-            <option value="Salta, Argentina">Salta, Argentina</option>
+            <option value="Perth, WA">Perth, Western Australia</option>
+            <option value="Brisbane, QLD">Brisbane, Queensland</option>
+            <option value="Melbourne, VIC">Melbourne, Victoria</option>
+            <option value="Sydney, NSW">Sydney, New South Wales</option>
+            <option value="Darwin, NT">Darwin, Northern Territory</option>
+            <option value="Karratha, WA">Karratha, Western Australia</option>
           </select>
         </div>
         
         <div className="space-y-2">
-          <Label htmlFor="reportingManager">Reporting Manager</Label>
+          <Label htmlFor="projectManager">Project Manager</Label>
           <Input
-            id="reportingManager"
-            name="reportingManager"
-            value={formData.reportingManager}
+            id="projectManager"
+            name="projectManager"
+            value={formData.projectManager}
             onChange={handleChange}
-            placeholder="Enter reporting manager name"
+            placeholder="Enter project manager name"
             required
           />
         </div>
@@ -150,7 +171,7 @@ export function PersonnelAllocationForm({ onSubmit, onCancel }: PersonnelAllocat
           Cancel
         </Button>
         <Button type="submit">
-          Create Allocation
+          Create Assignment
         </Button>
       </div>
     </form>
